@@ -2,6 +2,7 @@
 import { connect } from "react-redux";
 import React from "react";
 import _ from "lodash";
+import { Button, Tooltip } from "@blueprintjs/core";
 import Occupancy from "./occupancy";
 import { countCategoryValues2D } from "../../util/stateManager/worldUtil";
 import * as globals from "../../globals";
@@ -125,6 +126,7 @@ class CategoryValue extends React.Component {
           <svg
             style={{
               marginLeft: 5,
+              marginRight: 5,
               width: 11,
               height: 11,
               backgroundColor:
@@ -133,6 +135,32 @@ class CategoryValue extends React.Component {
                   : "inherit"
             }}
           />
+        </span>
+        <span className="bp3-button-group">
+          <Button
+            small
+            active={value === "Lung"}
+            type="button"
+            className="bp3-button"
+            onClick={() => {}}
+            style={{
+              cursor: "pointer"
+            }}
+          >
+            A
+          </Button>
+          <Button
+            small
+            active={value === "Heart"}
+            type="button"
+            className="bp3-button"
+            onClick={() => {}}
+            style={{
+              cursor: "pointer"
+            }}
+          >
+            B
+          </Button>
         </span>
       </div>
     );

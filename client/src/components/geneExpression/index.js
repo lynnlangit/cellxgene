@@ -21,10 +21,9 @@ import {
   postUserErrorToast,
   keepAroundErrorToast
 } from "../framework/toasters";
-import ExpressionButtons from "./expressionButtons";
 import finiteExtent from "../../util/finiteExtent";
 
-const renderGene = (fuzzySortResult, { handleClick, modifiers, query }) => {
+const renderGene = (fuzzySortResult, { handleClick, modifiers }) => {
   if (!modifiers.matchesPredicate) {
     return null;
   }
@@ -310,13 +309,12 @@ class GeneExpression extends React.Component {
         <div>
           <p
             style={Object.assign({}, globals.leftSidebarSectionHeading, {
-              marginTop: 40,
+              marginTop: 20,
               paddingLeft: globals.leftSidebarSectionPadding
             })}
           >
             Differentially Expressed Genes
           </p>
-          <ExpressionButtons />
           {differential.diffExp
             ? _.map(differential.diffExp, (value, index) => {
                 const name = world.varAnnotations.at(value[0], "name");

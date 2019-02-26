@@ -12,6 +12,7 @@ import actions from "../../actions";
 import _camera from "../../util/camera";
 import _drawPoints from "./drawPointsRegl";
 import scaleLinear from "../../util/scaleLinear";
+import ExpressionButtons from "../geneExpression/expressionButtons";
 
 /* https://bl.ocks.org/mbostock/9078690 - quadtree for onClick / hover selections */
 
@@ -405,6 +406,7 @@ class Graph extends React.Component {
                 subset to current selection
               </AnchorButton>
             </Tooltip>
+            <ExpressionButtons />
             <Tooltip
               content="Reset cellxgene, clearing all selections"
               position="left"

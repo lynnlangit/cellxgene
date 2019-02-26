@@ -5,7 +5,7 @@ import { Button, AnchorButton, Tooltip } from "@blueprintjs/core";
 import { connect } from "react-redux";
 import * as globals from "../../globals";
 import actions from "../../actions";
-import CellSetButton from "./cellSetButtons";
+// import CellSetButton from "./cellSetButtons";
 
 @connect(state => ({
   differential: state.differential,
@@ -52,20 +52,15 @@ class Expression extends React.Component {
     return (
       <div
         style={{
-          marginRight: 10,
-          marginBottom: 10,
-          paddingLeft: globals.leftSidebarSectionPadding
+          marginRight: 10
         }}
       >
-        <CellSetButton {...this.props} eitherCellSetOneOrTwo={1} />
-        <CellSetButton {...this.props} eitherCellSetOneOrTwo={2} />
         {!differential.diffExp ? (
           <Tooltip
             content="Add two cells selections, see the top 15 differentially expressed genes between them"
             position="bottom"
           >
             <AnchorButton
-              style={{ marginTop: 10 }}
               disabled={!haveBothCellSets}
               intent="primary"
               loading={differential.loading}
@@ -73,7 +68,7 @@ class Expression extends React.Component {
               type="button"
               onClick={this.computeDiffExp.bind(this)}
             >
-              Compute Differential Expression
+              compute differential expression
             </AnchorButton>
           </Tooltip>
         ) : null}
@@ -85,7 +80,6 @@ class Expression extends React.Component {
             <Button
               type="button"
               fill
-              style={{ marginTop: 10 }}
               intent="warning"
               onClick={this.clearDifferentialExpression.bind(this)}
             >
@@ -99,3 +93,6 @@ class Expression extends React.Component {
 }
 
 export default Expression;
+
+// <CellSetButton {...this.props} eitherCellSetOneOrTwo={1} />
+// <CellSetButton {...this.props} eitherCellSetOneOrTwo={2} />
