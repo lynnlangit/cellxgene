@@ -139,28 +139,15 @@ class CategoryValue extends React.Component {
         <span className="bp3-button-group">
           <Button
             small
-            active={value === "Lung"}
+            active={value === "Lung" || value === "Heart"}
+            intent={value === "Lung" || value === "Heart" ? "primary" : "none"}
             type="button"
-            className="bp3-button"
+            className="bp3-button bp3-icon-left-join"
             onClick={() => {}}
             style={{
               cursor: "pointer"
             }}
-          >
-            A
-          </Button>
-          <Button
-            small
-            active={value === "Heart"}
-            type="button"
-            className="bp3-button"
-            onClick={() => {}}
-            style={{
-              cursor: "pointer"
-            }}
-          >
-            B
-          </Button>
+          />
         </span>
       </div>
     );

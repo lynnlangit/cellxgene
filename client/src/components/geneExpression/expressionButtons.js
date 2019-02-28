@@ -63,6 +63,7 @@ class Expression extends React.Component {
             <AnchorButton
               disabled={!haveBothCellSets}
               intent="primary"
+              className={"bp3-icon-left-join"}
               loading={differential.loading}
               fill
               type="button"
