@@ -15,7 +15,6 @@ import actions from "../../actions";
 import CellSetButton from "./cellSetButtons";
 import InformationMenu from "./infoMenu";
 import UndoRedoReset from "./undoRedoReset";
-import Clip from "./clip";
 
 @connect(state => ({
   universe: state.universe,
@@ -66,32 +65,8 @@ class MenuBar extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      pendingClipPercentiles: null
-    };
+    this.state = {};
   }
-
-  isClipDisabled = () => {
-    /*
-    return true if clip button should be disabled.
-    */
-    const { pendingClipPercentiles } = this.state;
-    const clipPercentileMin = pendingClipPercentiles?.clipPercentileMin;
-    const clipPercentileMax = pendingClipPercentiles?.clipPercentileMax;
-
-    const { world } = this.props;
-    const currentClipMin = 100 * world?.clipQuantiles?.min;
-    const currentClipMax = 100 * world?.clipQuantiles?.max;
-
-    // if you change this test, be careful with logic around
-    // comparisons between undefined / NaN handling.
-    const isDisabled =
-      !(clipPercentileMin < clipPercentileMax) ||
-      (clipPercentileMin === currentClipMin &&
-        clipPercentileMax === currentClipMax);
-
-    return isDisabled;
-  };
 
   isResetDisabled = () => {
     /*
@@ -431,22 +406,6 @@ class MenuBar extends React.Component {
             }
           />
         </div>
-        <Clip
-          pendingClipPercentiles={pendingClipPercentiles}
-          clipPercentileMin={clipPercentileMin}
-          clipPercentileMax={clipPercentileMax}
-          handleClipOpening={this.handleClipOpening}
-          handleClipClosing={this.handleClipClosing}
-          handleClipCommit={this.handleClipCommit}
-          isClipDisabled={this.isClipDisabled}
-          handleClipOnKeyPress={this.handleClipOnKeyPress}
-          handleClipPercentileMaxValueChange={
-            this.handleClipPercentileMaxValueChange
-          }
-          handleClipPercentileMinValueChange={
-            this.handleClipPercentileMinValueChange
-          }
-        />
         <UndoRedoReset
           dispatch={dispatch}
           isResetDisabled={this.isResetDisabled}

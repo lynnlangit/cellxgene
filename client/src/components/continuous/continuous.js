@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import * as globals from "../../globals";
 
 import HistogramBrush from "../brushableHistogram";
+import Clip from "../menubar/clip";
 
 @connect(state => ({
   obsAnnotations: state.world?.obsAnnotations,
@@ -52,16 +53,32 @@ class Continuous extends React.Component {
 
     return (
       <div>
-        {this.hasContinuous ? (
+        <div>
           <p
             style={Object.assign({}, globals.leftSidebarSectionHeading, {
-              marginTop: 40,
+              marginTop: 20,
               paddingLeft: globals.leftSidebarSectionPadding
             })}
           >
-            Continuous metadata
+            Continuous fields
           </p>
-        ) : null}
+          <Clip
+            pendingClipPercentiles={pendingClipPercentiles}
+            clipPercentileMin={clipPercentileMin}
+            clipPercentileMax={clipPercentileMax}
+            handleClipOpening={this.handleClipOpening}
+            handleClipClosing={this.handleClipClosing}
+            handleClipCommit={this.handleClipCommit}
+            isClipDisabled={this.isClipDisabled}
+            handleClipOnKeyPress={this.handleClipOnKeyPress}
+            handleClipPercentileMaxValueChange={
+              this.handleClipPercentileMaxValueChange
+            }
+            handleClipPercentileMinValueChange={
+              this.handleClipPercentileMinValueChange
+            }
+          />
+        </div>
         {obsAnnotations
           ? _.map(obsAnnotations.colIndex.keys(), key => {
               const isColorField =
